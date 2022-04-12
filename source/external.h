@@ -63,10 +63,10 @@ extern EventGroupHandle_t sInputTaskEvents;
 
 typedef struct
     {;
-    bool obstacleDetected:1;
-    bool noLineDetected:1;
+    bool obstacleDetected;
+    bool noLineDetected;
 
-    float lineCenterPosition;
+    float linePosition;
     float lineAngle;
 
     }EnvironmentStruct;
@@ -82,6 +82,28 @@ extern EventGroupHandle_t sInterpretorTaskEvents;
 
 #define kPilotTaskPr 8
 #define kPilotTaskDelay ((UInt32)(10/portTICK_RATE_MS)) // Every 10ms
+#define kPilotTaskNewDirectionsFlag 0x01
+
+typedef struct
+    {
+    float speedLeft; // from -1 to 1
+    float speedRight;
+
+    }PilotStruct;
+
+
+extern QueueHandle_t sPilotTaskQueue;
+extern EventGroupHandle_t sPilotTaskEvents;
+
+
+
+///////////////////////////////////////////////////////////////
+// DRIVE TASK /////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////
+
+
+#define kDriveTaskPr 7
+#define kDriveTaskDelay ((UInt32)(10/portTICK_RATE_MS)) // Every 10 ms
 
 
 ///////////////////////////////////////////////////////////////

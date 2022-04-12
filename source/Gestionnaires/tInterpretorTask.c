@@ -29,6 +29,12 @@ void tInterpretorTask(void *pvParameters)
     sInterpretorTaskQueue = xQueueCreate(1, sizeof(EnvironmentStruct)); // Single element queue for latest values acquired
     sInterpretorTaskEvents = xEventGroupCreate(); // Flag group to notify when new values have been added
 
+
+//    float aAccX = 0.0;
+//    float aAccY = 0.0;
+//    float aAccZ = 0.0;
+
+
     // TODO : If less than two consecutive sensors detect a line = error
     // TODO : Determine the angle of the line
 
@@ -45,10 +51,14 @@ void tInterpretorTask(void *pvParameters)
 	////////////////////////////////////////////////////////////////////////////////////////
 	// Determining if the robot is experiencing a physical shock
 
-	printf("Z Acceleration : %+d\n", gInputStruct.IMUAccZ);
+
+//	aAccZ = -((float)gInputStruct.IMUAccZ)/17580*9.81;
+//
+//	printf("Z Acceleration : %+f\n", aAccZ);
 
 
-	gEnvironmentStruct.noLineDetected = gInputStruct.pixelValues == 0;
+
+
 
 	////////////////////////////////////////////////////////////////////////////////////////
 	// We search the center position of the line by making an average of the points detected
@@ -57,7 +67,9 @@ void tInterpretorTask(void *pvParameters)
 	// TODO : Take into account the width of the line if, say, we detect the line at one of the outermost pixels
 
 
-	float lineCenterPosition = 0; // 0 is the center
+	gEnvironmentStruct.noLineDetected = gInputStruct.pixelValues == 0;
+
+	float linePosition = 0; // 0 is the center
 
 	if (!gEnvironmentStruct.noLineDetected)
 	    {
@@ -69,20 +81,22 @@ void tInterpretorTask(void *pvParameters)
 		{
 		bool pointDetected = ((gInputStruct.pixelValues>>i)&1)==1;
 		nbPointsDetected += (float)pointDetected;
-		lineCenterPosition += (float)i*pointDetected;
+		linePosition += (float)i*pointDetected;
 		}
-	    lineCenterPosition = (lineCenterPosition/(nbPointsDetected*7.0)-0.5)*SENSOR_SPACING*7;
+	    linePosition = (linePosition/(nbPointsDetected*7.0)-0.5)*2; // Mulitply by 7*SENSOR_SPACING to get real dimensions and remove the *2 at the end
 	    minLineThicknessPossible = nbPointsDetected*SENSOR_SPACING; // To be used to find the angle of the line
 
 	    }
 
-	gEnvironmentStruct.lineCenterPosition = lineCenterPosition;
-//	printf("Line center position : %fcm\n", lineCenterPosition);
+	gEnvironmentStruct.linePosition = linePosition;
+	printf("Line center position : %f cm\n", linePosition);
 
 
 
 	////////////////////////////////////////////////////////////////////////////////////////
 	// Detecting obstacles
+
+
 
 
 

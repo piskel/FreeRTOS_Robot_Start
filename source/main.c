@@ -26,6 +26,8 @@
 
 #include "tInputTask.h"
 #include "tInterpretorTask.h"
+#include "tPilotTask.h"
+#include "tDriveTask.h"
 #include "tHMITask.h"
 
 
@@ -51,9 +53,9 @@ void AppStartTask(void *pvParameters)
     mRs232_Setup();
     mSwitch_Setup();
     mLine_Setup();
-
     mIMU_Setup();
 
+    // TODO : Check why in a while loop
     while (TRUE)
 	{
 	mIcOc_Open();
@@ -76,6 +78,24 @@ void AppStartTask(void *pvParameters)
 		kStackSize,
 		(void*) NULL,
 		kInterpretorTaskPr,
+		(xTaskHandle*) NULL);
+
+
+	aErr = xTaskCreate(
+		tPilotTask,
+		(const char*) "Pilot task",
+		kStackSize,
+		(void*) NULL,
+		kPilotTaskPr,
+		(xTaskHandle*) NULL);
+
+
+	aErr = xTaskCreate(
+		tDriveTask,
+		(const char*) "Drive task",
+		kStackSize,
+		(void*) NULL,
+		kDriveTaskPr,
 		(xTaskHandle*) NULL);
 
 
