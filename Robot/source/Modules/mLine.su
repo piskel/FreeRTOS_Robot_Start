@@ -1,0 +1,6 @@
+mLine.c:28:6:mLine_Setup	8	static
+mLine.c:37:6:mLine_Open	16	static
+mLine.c:66:6:mLine_Close	8	static
+mLine.c:78:13:mLine_GetData	24	static
+mLine.c:193:13:mLine_SetData	24	static
+mLine.c:279:6:mLine_GetRaw	24	static

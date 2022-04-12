@@ -1,0 +1,6 @@
+iDio.c:49:6:iDio_EnablePortClk	16	static
+iDio.c:63:6:iDio_PinConfig	32	static
+iDio.c:109:6:iDio_SetPortDirection	24	static
+iDio.c:160:6:iDio_SetPort	24	static
+iDio.c:209:6:iDio_GetPort	24	static
+iDio.c:253:6:iDio_PortLcd	16	static

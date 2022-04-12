@@ -1,0 +1,7 @@
+mLcd.c:77:6:mLcd_Setup	8	static
+mLcd.c:102:6:mLcd_Open	16	static
+mLcd.c:150:13:mLcd_SendLcdCmd	16	static
+mLcd.c:177:13:mLcd_SendLcdData	16	static
+mLcd.c:204:13:mLcd_ReadLcdBusy	16	static
+mLcd.c:246:6:mLcd_WriteEntireDisplay	24	static
+mLcd.c:289:6:mLcd_Write	32	static

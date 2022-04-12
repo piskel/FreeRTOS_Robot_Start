@@ -1,0 +1,12 @@
+iI2C.c:22:6:iI2C_Config	8	static
+iI2C.c:51:6:iI2C_Enable	8	static
+iI2C.c:62:6:iI2C_Disable	8	static
+iI2C.c:72:6:iI2C_SetStartState	8	static
+iI2C.c:81:6:iI2C_SetRepeatedStartSate	8	static
+iI2C.c:90:6:iI2C_SetStopState	8	static
+iI2C.c:99:6:iI2C_SetAckMode	16	static
+iI2C.c:117:6:iI2C_TxRxSelect	16	static
+iI2C.c:134:6:iI2C_SendData	16	static
+iI2C.c:143:6:iI2C_WaitEndOfRxOrTx	8	static
+iI2C.c:155:7:iI2C_ReadData	16	static
+iI2C.c:168:6:iI2C_ReadStatus	16	static

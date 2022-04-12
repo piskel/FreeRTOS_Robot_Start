@@ -1,0 +1,8 @@
+mBT.c:11:6:mBT_Setup	8	static
+mBT.c:30:6:mBT_Start	8	static
+mBT.c:35:6:mBT_Stop	8	static
+mBT.c:41:6:mBT_WriteChar	16	static
+mBT.c:46:6:mBT_WriteString	16	static
+mBT.c:51:6:mBT_WriteData	16	static
+mBT.c:57:7:mBT_ReadData	8	static
+mBT.c:62:6:mBT_ClearBuffer	8	static

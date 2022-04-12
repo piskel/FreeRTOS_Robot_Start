@@ -1,0 +1,3 @@
+mSwitch.c:19:6:mSwitch_Setup	8	static
+mSwitch.c:45:6:mSwitch_ReadSwitch	24	static
+mSwitch.c:73:6:mSwitch_ReadPushBut	24	static

@@ -1,0 +1,9 @@
+iPit.c:59:6:iPit_Config	24	static
+iPit.c:122:6:iPit_StartPit	24	static
+iPit.c:148:6:iPit_GetFlag	8	static
+iPit.c:157:6:iPit_ResetFlag	8	static
+iPit.c:165:6:PIT_IRQHandler	24	static
+iPit.c:215:6:iPit_InitDelay	16	static
+iPit.c:232:5:iPit_GetDelay	24	static
+iPit.c:257:6:iPit_IsDelayDone	16	static
+iPit.c:266:6:iPit_DelayRelease	16	static

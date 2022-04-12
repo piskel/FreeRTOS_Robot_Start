@@ -1,0 +1,2 @@
+mLeds.c:20:6:mLeds_Setup	8	static
+mLeds.c:40:6:mLeds_Write	16	static

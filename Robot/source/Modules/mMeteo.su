@@ -1,0 +1,11 @@
+mMeteo.c:31:6:mMeteo_Setup	8	static
+mMeteo.c:40:6:mMeteo_Open	16	static
+mMeteo.c:62:6:mMeteo_Close	8	static
+mMeteo.c:74:13:mMeteo_GetData	24	static
+mMeteo.c:189:13:mMeteo_SetData	24	static
+mMeteo.c:275:6:mMeteo_GetAlt	40	static
+mMeteo.c:313:6:mMeteo_GetPressure	40	static
+mMeteo.c:351:6:mMeteo_GetTemp	40	static
+mMeteo.c:384:13:mMeteo_HTU21GetData	32	static
+mMeteo.c:512:6:mMeteo_GetHumidite	24	static
+mMeteo.c:527:6:mMeteo_GetHumiditeTemp	24	static

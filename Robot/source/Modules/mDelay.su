@@ -1,0 +1,6 @@
+mDelay.c:23:6:mDelay_Setup	8	static
+mDelay.c:40:6:mDelay_GetFlag	8	static
+mDelay.c:49:6:mDelay_ResetFlag	8	static
+mDelay.c:60:5:mDelay_GetDelay	16	static
+mDelay.c:70:6:mDelay_IsDelayDone	16	static
+mDelay.c:79:6:mDelay_DelayRelease	16	static

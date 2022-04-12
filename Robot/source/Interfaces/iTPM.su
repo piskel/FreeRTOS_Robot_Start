@@ -1,0 +1,10 @@
+core_cm0plus.h:745:22:NVIC_EnableIRQ	16	static
+core_cm0plus.h:804:22:NVIC_SetPriority	24	static
+iTPM.c:83:6:iTPM_Config	8	static
+iTPM.c:205:6:iTPM_UpdatePWM	24	static
+iTPM.c:227:7:iTPM_GetDistFront	8	static
+iTPM.c:235:7:iTPM_GetDistBack	8	static
+iTPM.c:243:7:iTPM_GetDistLeft	8	static
+iTPM.c:251:7:iTPM_GetDistRight	8	static
+iTPM.c:259:6:TPM2_IRQHandler	16	static
+iTPM.c:358:6:TPM1_IRQHandler	16	static
