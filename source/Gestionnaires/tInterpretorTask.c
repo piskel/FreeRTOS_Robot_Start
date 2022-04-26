@@ -10,6 +10,7 @@
 #include "FreeRTOS.h"
 #include "MKL46Z4.h"
 #include "stdio.h"
+#include "math.h"
 
 #include "def.h"
 
@@ -30,10 +31,11 @@ void tInterpretorTask(void *pvParameters)
     sInterpretorTaskEvents = xEventGroupCreate(); // Flag group to notify when new values have been added
 
 
-//    float aAccX = 0.0;
-//    float aAccY = 0.0;
-//    float aAccZ = 0.0;
+    float aAccX = 0.0;
+    float aAccY = 0.0;
+    float aAccZ = 0.0;
 
+    float aLinearAcc = 0.0f;
 
     // TODO : If less than two consecutive sensors detect a line = error
     // TODO : Determine the angle of the line
@@ -52,9 +54,15 @@ void tInterpretorTask(void *pvParameters)
 	// Determining if the robot is experiencing a physical shock
 
 
-//	aAccZ = -((float)gInputStruct.IMUAccZ)/17580*9.81;
-//
-//	printf("Z Acceleration : %+f\n", aAccZ);
+	aAccX = -((float)gInputStruct.IMUAccX)/17580*9.81;
+	aAccY = -((float)gInputStruct.IMUAccY)/17580*9.81;
+	aAccZ = -((float)gInputStruct.IMUAccZ)/17580*9.81;
+
+	aLinearAcc = sqrtf(powf(aAccX, 2)+powf(aAccY, 2)+powf(aAccZ+9.81, 2));
+
+	printf("X Acceleration : %+f\n", aAccX);
+	printf("Y Acceleration : %+f\n", aAccY);
+	printf("Z Acceleration : %+f\n", aAccZ);
 
 
 
@@ -75,7 +83,7 @@ void tInterpretorTask(void *pvParameters)
 	    {
 	    printf("Line detected\n");
 	    float nbPointsDetected = 0.0;
-	    float minLineThicknessPossible = 0.0;
+//	    float minLineThicknessPossible = 0.0;
 
 	    for (int i = 0; i < 8; i++)
 		{
@@ -84,7 +92,7 @@ void tInterpretorTask(void *pvParameters)
 		linePosition += (float)i*pointDetected;
 		}
 	    linePosition = (linePosition/(nbPointsDetected*7.0)-0.5)*2; // Mulitply by 7*SENSOR_SPACING to get real dimensions and remove the *2 at the end
-	    minLineThicknessPossible = nbPointsDetected*SENSOR_SPACING; // To be used to find the angle of the line
+//	    minLineThicknessPossible = nbPointsDetected*SENSOR_SPACING; // To be used to find the angle of the line
 
 	    }
 
