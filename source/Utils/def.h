@@ -1,6 +1,6 @@
 /*
 ------------------------------------------------------------
-Copyright 2003-201x Haute école ARC Ingéniérie, Switzerland. 
+Copyright 2003-201x Haute ï¿½cole ARC Ingï¿½niï¿½rie, Switzerland. 
 All rights reserved.
 ------------------------------------------------------------
 File name : 	def.h	
@@ -21,19 +21,20 @@ $History: $
 #define DEF_H_
 
 //-----------------------------------------------------------------------------
-// Déclaration des constantes
+// Dï¿½claration des constantes
 //-----------------------------------------------------------------------------
 #define kPITTime 1.0
 #define kTicksTime 1.0
 
 //-----------------------------------------------------------------------------
-// Déclaration des types
+// Dï¿½claration des types
 //-----------------------------------------------------------------------------
 typedef int bool;
 #define TRUE 1
 #define true 1
 #define FALSE 0
 #define false 0
+#define PI 3.14159265
 
 typedef unsigned char				UInt8;  /*  8 bits */
 typedef unsigned short int	UInt16; /* 16 bits */
@@ -52,7 +53,7 @@ typedef volatile UInt16			VUInt16; /* 16 bits */
 typedef volatile UInt32			VUInt32; /* 32 bits */
 
 //-----------------------------------------------------------------------------
-// Déclaration des macros permettant l'enable/disable des interruptions
+// Dï¿½claration des macros permettant l'enable/disable des interruptions
 //-----------------------------------------------------------------------------
 // Enable maskable interrupts
 #define EnableInterrupts __asm(" CPSIE i");
@@ -60,5 +61,9 @@ typedef volatile UInt32			VUInt32; /* 32 bits */
 // Disable maskable interrupts
 #define DisableInterrupts __asm(" CPSID i");
 
+
+// Autres macros
+#define MAX(x, y) (((x) > (y)) ? (x) : (y))
+#define MIN(x, y) (((x) < (y)) ? (x) : (y))
 
 #endif /* DEF_H_ */

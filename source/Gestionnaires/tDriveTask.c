@@ -11,6 +11,7 @@
 #include "FreeRTOS.h"
 #include "MKL46Z4.h"
 #include "math.h"
+#include "stdio.h"
 
 #include "def.h"
 
@@ -19,12 +20,15 @@
 #include "external.h"
 
 
+
+
 void tDriveTask(void *pvParameters)
     {
 
     (void) pvParameters;
 
     PilotStruct gPilotStruct;
+
 
     while (TRUE)
 	{
@@ -36,13 +40,19 @@ void tDriveTask(void *pvParameters)
 
 
 
-	if (gPilotStruct.speedLeft!=0){
-	    mIcOc_MoteurGauche(gPilotStruct.speedLeft>0?kEnAvant:kEnArriere, fabs(gPilotStruct.speedLeft));
-	}
 
-	if (gPilotStruct.speedRight!=0){
-	    mIcOc_MoteurDroit(gPilotStruct.speedRight>0?kEnAvant:kEnArriere, fabs(gPilotStruct.speedRight));
-	}
+
+	mIcOc_MoteurGauche(gPilotStruct.speedLeft>0?kEnAvant:kEnArriere, fabs(gPilotStruct.speedLeft));
+	mIcOc_MoteurDroit(gPilotStruct.speedRight>0?kEnAvant:kEnArriere, fabs(gPilotStruct.speedRight));
+
+
+//	if (gPilotStruct.speedLeft!=0){
+//	    mIcOc_MoteurGauche(gPilotStruct.speedLeft>0?kEnAvant:kEnArriere, fabs(gPilotStruct.speedLeft));
+//	}
+//
+//	if (gPilotStruct.speedRight!=0){
+//	    mIcOc_MoteurDroit(gPilotStruct.speedRight>0?kEnAvant:kEnArriere, fabs(gPilotStruct.speedRight));
+//	}
 
 
 	vTaskDelay(kDriveTaskDelay);

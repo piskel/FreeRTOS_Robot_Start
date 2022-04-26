@@ -10,6 +10,7 @@
 #include "FreeRTOS.h"
 #include "MKL46Z4.h"
 #include "stdio.h"
+#include "math.h"
 
 #include "def.h"
 
@@ -30,17 +31,39 @@ void tPilotTask(void *pvParameters)
 
 
 
+    float aCurveA = 0.0f;
+    float aCurveB = 0.0f;
 
-//    float aLineError = 0.0;
+    float aFactor = 2.2f;
+
+
+
 
     while (TRUE)
 	{
 	xQueuePeek(sInterpretorTaskQueue, &gEnvironmentStruct, portMAX_DELAY);
 	printf("Entering pilot task\n");
-//	aLineError = gEnvironmentStruct.linePosition; // If the line position is not 0, we are not centered.
 
-	gPilotStruct.speedLeft = 0.5 - gEnvironmentStruct.linePosition/2;
-	gPilotStruct.speedRight = 0.5 + gEnvironmentStruct.linePosition/2;
+
+
+	if(!gEnvironmentStruct.noLineDetected){
+
+	    //https://www.desmos.com/calculator/wulpir2bto
+
+	    aCurveA = 1-powf(gEnvironmentStruct.linePosition, 2)/aFactor;
+	    aCurveB = 1-powf(gEnvironmentStruct.linePosition, 2)*aFactor;
+
+
+	    gPilotStruct.speedLeft = gEnvironmentStruct.linePosition>0?aCurveB:aCurveA;
+	    gPilotStruct.speedRight = gEnvironmentStruct.linePosition>0?aCurveA:aCurveB;
+
+
+	}
+	else
+	    {
+	    gPilotStruct.speedLeft = 0.0f;
+	    gPilotStruct.speedRight = 0.0f;
+	    }
 
 
 
