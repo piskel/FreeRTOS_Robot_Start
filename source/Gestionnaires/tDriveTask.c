@@ -33,26 +33,15 @@ void tDriveTask(void *pvParameters)
     while (TRUE)
 	{
 	xQueuePeek(sPilotTaskQueue, &gPilotStruct, portMAX_DELAY);
-	printf("Drive task\n");
-
-	printf("Speed left : %+f\n", gPilotStruct.speedLeft);
-	printf("Speed right : %+f\n", gPilotStruct.speedRight);
-
-
+//	printf("Drive task\n");
+//
+//	printf("Speed left : %+f\n", gPilotStruct.speedLeft);
+//	printf("Speed right : %+f\n", gPilotStruct.speedRight);
 
 
 
 	mIcOc_MoteurGauche(gPilotStruct.speedLeft>0?kEnAvant:kEnArriere, fabs(gPilotStruct.speedLeft));
 	mIcOc_MoteurDroit(gPilotStruct.speedRight>0?kEnAvant:kEnArriere, fabs(gPilotStruct.speedRight));
-
-
-//	if (gPilotStruct.speedLeft!=0){
-//	    mIcOc_MoteurGauche(gPilotStruct.speedLeft>0?kEnAvant:kEnArriere, fabs(gPilotStruct.speedLeft));
-//	}
-//
-//	if (gPilotStruct.speedRight!=0){
-//	    mIcOc_MoteurDroit(gPilotStruct.speedRight>0?kEnAvant:kEnArriere, fabs(gPilotStruct.speedRight));
-//	}
 
 
 	vTaskDelay(kDriveTaskDelay);

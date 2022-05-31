@@ -1,21 +1,9 @@
 /*
-------------------------------------------------------------
-Copyright 2003-201x Haute école ARC Ingéniérie, Switzerland. 
-All rights reserved.
-------------------------------------------------------------
-File name : 	iUart.h	
-Author and date :	Monnerat Serge 06.06.2014
-
-Goal : interface du périphérique RS232
-
------------------------------------------------------------------------------
-History:
------------------------------------------------------------------------------
-
-$History: $
-
------------------------------------------------------------------------------
-*/
+ * iUart.h
+ *
+ *  Created on: Apr 24, 2014
+ *      Author: serge.monnerat
+ */
 
 #ifndef __iUart__
 #define __iUart__
@@ -105,6 +93,5 @@ Int8 iUart_GetCharFromBuffer(UartEnum aUart);
 // Setup BaudRate
 //------------------------------------------------------------
 void iUart_SetupBaudrate(UartEnum aUart,UInt16 aBaud);
-
 
 #endif

@@ -1,0 +1,7 @@
+mBluetooth.c:16:6:mBluetooth_Setup	8	static
+mBluetooth.c:35:6:mBluetooth_Open	8	static
+mBluetooth.c:89:6:mBluetooth_WaitConnect	224	static
+mBluetooth.c:118:6:mBluetooth_WaitOK	224	static
+mBluetooth.c:148:6:mBluetooth_WriteChar	16	static
+mBluetooth.c:164:6:mBluetooth_WriteString	16	static
+mBluetooth.c:187:6:mBluetooth_ReadDataFromBuffer	24	static

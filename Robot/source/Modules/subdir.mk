@@ -5,6 +5,7 @@
 # Add inputs and outputs from these tool invocations to the build variables 
 C_SRCS += \
 ../source/Modules/mBT.c \
+../source/Modules/mBluetooth.c \
 ../source/Modules/mCpu.c \
 ../source/Modules/mDelay.c \
 ../source/Modules/mIMU.c \
@@ -18,6 +19,7 @@ C_SRCS += \
 
 OBJS += \
 ./source/Modules/mBT.o \
+./source/Modules/mBluetooth.o \
 ./source/Modules/mCpu.o \
 ./source/Modules/mDelay.o \
 ./source/Modules/mIMU.o \
@@ -31,6 +33,7 @@ OBJS += \
 
 C_DEPS += \
 ./source/Modules/mBT.d \
+./source/Modules/mBluetooth.d \
 ./source/Modules/mCpu.d \
 ./source/Modules/mDelay.d \
 ./source/Modules/mIMU.d \

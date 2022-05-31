@@ -20,8 +20,21 @@
 
 // GLOBAL VARIABLES
 
+typedef enum
+    {
+    kComNoOperation = 0,
+    kComChangeMode = 1, // 0: Autonomous, 1: Manual, 2: Obstacle, 3: Shock
+    kComChangeAngle = 2,
+    kComChangeSpeed = 3
+    }ECommand;
+
+
 typedef struct
     {
+
+//    ECommand command;
+//    char commandArg;
+
     UInt8 switchValues;
     UInt8 pixelValues;
 
@@ -62,12 +75,18 @@ extern EventGroupHandle_t sInputTaskEvents;
 // GLOBAL VARIABLES
 
 typedef struct
-    {;
-    bool obstacleDetected;
+    {
+    bool frontObstacleDetected;
+    bool backObstacleDetected;
+    bool leftObstacleDetected;
+    bool rightObstacleDetected;
+
     bool noLineDetected;
+    bool shockDetected;
 
     float linePosition;
     float lineAngle;
+
 
     }EnvironmentStruct;
 
@@ -84,8 +103,26 @@ extern EventGroupHandle_t sInterpretorTaskEvents;
 #define kPilotTaskDelay ((UInt32)(10/portTICK_RATE_MS)) // Every 10ms
 #define kPilotTaskNewDirectionsFlag 0x01
 
+typedef enum
+    {
+    kModeAutonomous = 0,
+    kModeManual = 1,
+    kModeObstacle = 2,
+    kModeShock = 3
+    }EPilotMode;
+
+typedef enum
+    {
+	kObstacleFirstRotation,
+	kObstacleForward,
+	kObstacleRotate
+    }EObstacleStateMachine;
+
 typedef struct
     {
+
+    int mode; // 0: automatic, 1: manual, 2: obstacle avoiding
+
     float speedLeft; // from -1 to 1
     float speedRight;
 
@@ -106,14 +143,39 @@ extern EventGroupHandle_t sPilotTaskEvents;
 #define kDriveTaskDelay ((UInt32)(10/portTICK_RATE_MS)) // Every 10 ms
 
 
+
+
 ///////////////////////////////////////////////////////////////
 // HMI TASK ///////////////////////////////////////////////////
 ///////////////////////////////////////////////////////////////
 
 // CONSTANTS
 
-#define kHMITaskPr 3
-#define kHMITaskDelay ((UInt32)(10/portTICK_RATE_MS)) // Every 10ms
+#define kHMITaskPr 6
+#define kHMITaskDelay ((UInt32)(500/portTICK_RATE_MS)) // Every 10ms
+
+
+
+///////////////////////////////////////////////////////////////
+// BT TASK ////////////////////////////////////////////////////
+///////////////////////////////////////////////////////////////
+
+// CONSTANTS
+
+#define kBTTaskPr 5
+#define kBTTaskDelay ((UInt32)(100/portTICK_RATE_MS)) // Every 10ms
+#define kBTTaskNewCommandFlag 0x01
+
+typedef struct
+    {
+
+    ECommand command;
+    char commandArg;
+    } BTStruct;
+
+
+extern QueueHandle_t sBTTaskQueue;
+extern EventGroupHandle_t sBTTaskEvents;
 
 
 #endif

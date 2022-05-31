@@ -20,6 +20,7 @@
 #include "mIcOc.h"
 #include "mMeteo.h"
 #include "mLine.h"
+#include "mBT.h"
 
 
 #include "external.h"
@@ -29,6 +30,7 @@
 #include "tPilotTask.h"
 #include "tDriveTask.h"
 #include "tHMITask.h"
+#include "tBTTask.h"
 
 
 
@@ -54,6 +56,8 @@ void AppStartTask(void *pvParameters)
     mSwitch_Setup();
     mLine_Setup();
     mIMU_Setup();
+//    mBluetooth_Setup();
+    mBT_Setup();
 
     // TODO : Check why in a while loop
     while (TRUE)
@@ -63,6 +67,8 @@ void AppStartTask(void *pvParameters)
 	mRs232_Open();
 	mLine_Open();
 	mIMU_Open();
+//	mBluetooth_Open();
+	mBT_Start();
 
 	aErr = xTaskCreate(
 		tInputTask,
@@ -106,6 +112,15 @@ void AppStartTask(void *pvParameters)
 		(void*) NULL,
 		kHMITaskPr,
 		(xTaskHandle*) NULL);
+
+
+//	aErr = xTaskCreate(
+//		tBTTask,
+//		(const char*) "BT task",
+//		kStackSize,
+//		(void*) NULL,
+//		kBTTaskPr,
+//		(xTaskHandle*) NULL);
 
 
 	if (aErr != pdPASS)

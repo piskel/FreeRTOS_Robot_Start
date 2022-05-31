@@ -1,2 +1,2 @@
-main.c:43:6:AppStartTask	32	static
-main.c:121:5:main	24	static
+main.c:45:6:AppStartTask	32	static
+main.c:136:5:main	24	static

@@ -21,14 +21,18 @@
 #include "external.h"
 
 
+
 void tHMITask(void *pvParameters)
     {
 
     (void) pvParameters;
 
     InputStruct gInputStruct;
+    EnvironmentStruct gEnvironmentStruct;
+    PilotStruct gPilotStruct;
 
-//    char text[32];
+    int textSize = 32;
+    char text[textSize];
 
 
     while (TRUE)
@@ -37,19 +41,46 @@ void tHMITask(void *pvParameters)
 
 	// Simply act as a passive observer
 	xQueuePeek(sInputTaskQueue, &gInputStruct, portMAX_DELAY);
+	xQueuePeek(sInterpretorTaskQueue, &gEnvironmentStruct, portMAX_DELAY);
+	xQueuePeek(sPilotTaskQueue, &gPilotStruct, portMAX_DELAY);
 
 	// Do stuff ...
 
 
-//	memset(text, ' ', sizeof text);
-//	itoa(gInputStruct.IMUAccZ, text, 10);
-//
-//	mLcd_WriteEntireDisplay(text);
+	for(int i = 0; i < textSize; i++)
+	    {
+		text[i] = ' ';
+	    }
+
+
+
+	switch (gPilotStruct.mode) {
+	    case kModeAutonomous:
+		snprintf(text, textSize, "Mode: %s", "Autonomous");
+		break;
+	    case kModeManual:
+		snprintf(text, textSize, "Mode: %s", "Manual");
+		break;
+	    case kModeObstacle:
+		snprintf(text, textSize, "Mode: %s", "Obstacle");
+		break;
+	    case kModeShock:
+		snprintf(text, textSize, "Mode: %s", "Shock");
+		break;
+
+	    default:
+		snprintf(text, textSize, "%s", "Error in HMI");
+		break;
+	}
+
+	printf("Printing on screen");
+
+
+	mLcd_WriteEntireDisplay(text);
 
 
 
 
-	printf("Printing Data\n");
 	vTaskDelay(kHMITaskDelay);
 	}
 

@@ -4,6 +4,7 @@
 
 # Add inputs and outputs from these tool invocations to the build variables 
 C_SRCS += \
+../source/Gestionnaires/tBTTask.c \
 ../source/Gestionnaires/tDriveTask.c \
 ../source/Gestionnaires/tHMITask.c \
 ../source/Gestionnaires/tInputTask.c \
@@ -11,6 +12,7 @@ C_SRCS += \
 ../source/Gestionnaires/tPilotTask.c 
 
 OBJS += \
+./source/Gestionnaires/tBTTask.o \
 ./source/Gestionnaires/tDriveTask.o \
 ./source/Gestionnaires/tHMITask.o \
 ./source/Gestionnaires/tInputTask.o \
@@ -18,6 +20,7 @@ OBJS += \
 ./source/Gestionnaires/tPilotTask.o 
 
 C_DEPS += \
+./source/Gestionnaires/tBTTask.d \
 ./source/Gestionnaires/tDriveTask.d \
 ./source/Gestionnaires/tHMITask.d \
 ./source/Gestionnaires/tInputTask.d \

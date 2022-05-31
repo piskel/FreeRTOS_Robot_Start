@@ -16,7 +16,8 @@ void mBT_WriteChar(char data);
 void mBT_WriteString(char* data);
 void mBT_WriteData(char* data, int size);
 
-char* mBT_ReadData(void);
-void mBT_ClearBuffer(void);
+bool mBT_ReadData(char *data);
+
+bool mBT_WaitOK(void);
 
 #endif
