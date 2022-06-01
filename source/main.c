@@ -70,6 +70,8 @@ void AppStartTask(void *pvParameters)
 //	mBluetooth_Open();
 	mBT_Start();
 
+
+
 	aErr = xTaskCreate(
 		tInputTask,
 		(const char*) "Input task",
@@ -77,6 +79,18 @@ void AppStartTask(void *pvParameters)
 		(void*) NULL,
 		kInputTaskPr,
 		(xTaskHandle*) NULL);
+
+
+
+//	aErr = xTaskCreate(
+//		tBTTask,
+//		(const char*) "BT task",
+//		kStackSize,
+//		(void*) NULL,
+//		kBTTaskPr,
+//		(xTaskHandle*) NULL);
+//
+
 
 	aErr = xTaskCreate(
 		tInterpretorTask,
@@ -112,15 +126,6 @@ void AppStartTask(void *pvParameters)
 		(void*) NULL,
 		kHMITaskPr,
 		(xTaskHandle*) NULL);
-
-
-//	aErr = xTaskCreate(
-//		tBTTask,
-//		(const char*) "BT task",
-//		kStackSize,
-//		(void*) NULL,
-//		kBTTaskPr,
-//		(xTaskHandle*) NULL);
 
 
 	if (aErr != pdPASS)

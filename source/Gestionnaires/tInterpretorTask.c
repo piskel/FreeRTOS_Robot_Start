@@ -19,7 +19,7 @@
 
 #define LINE_WIDTH 2.5 // cm
 #define SENSOR_SPACING 1.25 // cm
-#define SHOCK_THRESHOLD 7 // m/s^2
+#define SHOCK_THRESHOLD 10 // m/s^2
 
 void tInterpretorTask(void *pvParameters)
     {
@@ -125,7 +125,7 @@ void tInterpretorTask(void *pvParameters)
 	float frontSum = (frontBuffer[0] + frontBuffer[1] + frontBuffer[2])/3;
 	float leftSum = (leftBuffer[0] + leftBuffer[1] + leftBuffer[2])/3;
 
-	gEnvironmentStruct.frontObstacleDetected = frontSum < 20;
+	gEnvironmentStruct.frontObstacleDetected = frontSum < 25;
 	gEnvironmentStruct.leftObstacleDetected = leftSum < 40;
 
 	// TODO : Add buffers for these sensors

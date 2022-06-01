@@ -46,6 +46,8 @@ void tBTTask(void *pvParameters)
 	// Bluetooth //////////////////////////////////////////
 	///////////////////////////////////////////////////////
 
+	printf("BT Task\n");
+
 	gBTStruct.command = 0;
 	gBTStruct.commandArg = 0;
 

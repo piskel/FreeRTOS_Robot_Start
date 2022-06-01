@@ -73,7 +73,7 @@ void tHMITask(void *pvParameters)
 		break;
 	}
 
-	printf("Printing on screen");
+//	printf("Printing on screen\n");
 
 
 	mLcd_WriteEntireDisplay(text);

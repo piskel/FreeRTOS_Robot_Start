@@ -14,7 +14,7 @@
 // CONSTANTS
 
 #define kInputTaskPr 10
-#define kInputTaskDelay ((UInt32)(10/portTICK_RATE_MS)) // Every 10ms
+#define kInputTaskDelay ((UInt32)(50/portTICK_RATE_MS)) // Every 10ms
 #define kInputTaskNewDataFlag 0x01
 
 
@@ -32,8 +32,8 @@ typedef enum
 typedef struct
     {
 
-//    ECommand command;
-//    char commandArg;
+    ECommand command;
+    char commandArg;
 
     UInt8 switchValues;
     UInt8 pixelValues;
@@ -152,7 +152,7 @@ extern EventGroupHandle_t sPilotTaskEvents;
 // CONSTANTS
 
 #define kHMITaskPr 6
-#define kHMITaskDelay ((UInt32)(500/portTICK_RATE_MS)) // Every 10ms
+#define kHMITaskDelay ((UInt32)(10/portTICK_RATE_MS)) // Every 10ms
 
 
 
@@ -162,7 +162,7 @@ extern EventGroupHandle_t sPilotTaskEvents;
 
 // CONSTANTS
 
-#define kBTTaskPr 5
+#define kBTTaskPr 10
 #define kBTTaskDelay ((UInt32)(100/portTICK_RATE_MS)) // Every 10ms
 #define kBTTaskNewCommandFlag 0x01
 

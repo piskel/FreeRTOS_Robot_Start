@@ -38,12 +38,12 @@ void tInputTask(void *pvParameters)
 
     sInputTaskEvents = xEventGroupCreate(); // Flag group to notify when new values have been added
 
-//    mIcOc_StartDistMesure(); // Start distance measurement
-//
-//    char charVal = 0;
-//    char buffer[3] = {0};
-//    int bufferIndex = 0;
-//    bool isReceiving = false;
+    mIcOc_StartDistMesure(); // Start distance measurement
+
+    char charVal = 0;
+    char buffer[3] = {0};
+    int bufferIndex = 0;
+    bool isReceiving = false;
 
 
     while (TRUE)
@@ -53,16 +53,65 @@ void tInputTask(void *pvParameters)
 
 
 
-
 	///////////////////////////////////////////////////////
 	// Distance sensor ////////////////////////////////////
 	///////////////////////////////////////////////////////
 
-	mIcOc_StartDistMesure(); // Start distance measurement
+
 	gInputStruct.frontDistance = mIcOc_GetDistFront();
 	gInputStruct.backDistance  = mIcOc_GetDistBack();
 	gInputStruct.leftDistance  = mIcOc_GetDistLeft();
 	gInputStruct.rightDistance = mIcOc_GetDistRight();
+
+
+	///////////////////////////////////////////////////////
+	// Bluetooth //////////////////////////////////////////
+	///////////////////////////////////////////////////////
+
+
+
+	gInputStruct.command = 0;
+	gInputStruct.commandArg = 0;
+
+//	DisableInterrupts;
+	while(mBT_ReadData(&charVal))
+	    {
+//	    printf("BT - BF IND : %d\n", bufferIndex);
+//	    printf("BT - Data : %X\n", charVal);
+
+	    if(isReceiving)
+		{
+		buffer[bufferIndex] = charVal;
+		bufferIndex++;
+		}
+
+	    if (charVal == 0x01 && !isReceiving) // Start of transmission
+		{
+		bufferIndex = 0;
+		isReceiving = true;
+		printf("BT - Receiving command...\n");
+		}
+	    else if(charVal == 0xff && bufferIndex == 3) // End of transmission
+		{
+		isReceiving = false;
+		bufferIndex = 0;
+
+		gInputStruct.command = buffer[0];
+		gInputStruct.commandArg = buffer[1];
+		printf("BT - Received command : %X %X\n", buffer[0], buffer[1]);
+
+		}
+	    else if(bufferIndex > 2)
+		{
+		isReceiving = false;
+		bufferIndex = 0;
+		}
+
+	}
+//	EnableInterrupts;
+
+
+
 
 
 
@@ -103,11 +152,8 @@ void tInputTask(void *pvParameters)
 	gInputStruct.IMUGyroZ = mIMU_GetGyroZ();
 
 
+	mIcOc_StartDistMesure(); // Start distance measurement
 
-//	mIcOc_StartDistMesure(); // Start distance measurement
-
-
-//	xEventGroupClearBits(sInputTaskEvents, kInputTaskNewDataFlag);
 
 	// Sending new data to the queue
 	xQueueOverwrite(sInputTaskQueue, &gInputStruct);

@@ -3,6 +3,7 @@
 #include "mBT.h"
 
 #include "MKL46Z4.h"
+#include "stdio.h"
 
 #include "iDio.h"
 #include "iUart.h"
@@ -39,21 +40,21 @@ void mBT_Start(void)
 
     iDio_SetPort(kPortC,kMaskIo13,kIoOn); // AT mode
 
-    printf("BT - Reset to default: ");
-    do{
-    mBT_WriteString("AT+ORGL\r\n"); // Reset to default
-    }while(!mBT_WaitOK());
-    printf("OK\n");
-
-    printf("BT - Delete previous devices: ");
-    do{
-    mBT_WriteString("AT+RMAAD\r\n"); // Deletes previously paired devices
-    }while(!mBT_WaitOK());
-    printf("OK\n");
+//    printf("BT - Reset to default: ");
+//    do{
+//    mBT_WriteString("AT+ORGL\r\n"); // Reset to default
+//    }while(!mBT_WaitOK());
+//    printf("OK\n");
+//
+//    printf("BT - Delete previous devices: ");
+//    do{
+//    mBT_WriteString("AT+RMAAD\r\n"); // Deletes previously paired devices
+//    }while(!mBT_WaitOK());
+//    printf("OK\n");
 
     printf("BT - Setting device name: ");
     do{
-    mBT_WriteString("AT+NAME=RBT_01\r\n"); // Sets the device name
+    mBT_WriteString("AT+NAME=RBT_00\r\n"); // Sets the device name
     }while(!mBT_WaitOK());
     printf("OK\n");
 
@@ -67,7 +68,7 @@ void mBT_Start(void)
     iUart_InitRxBuffer(kUart1,0); // Clearing buffer
     EnableInterrupts;
 
-    printf("BT - Configuration done!");
+    printf("BT - Configuration done!\n");
     }
 
 void mBT_Stop(void)

@@ -1,8 +1,8 @@
-mBT.c:14:6:mBT_Setup	8	static
-mBT.c:34:6:mBT_Start	8	static
-mBT.c:73:6:mBT_Stop	8	static
-mBT.c:79:6:mBT_WriteChar	16	static
-mBT.c:86:6:mBT_WriteString	24	static
-mBT.c:94:6:mBT_WriteData	24	static
-mBT.c:103:6:mBT_ReadData	16	static
-mBT.c:115:6:mBT_WaitOK	16	static
+mBT.c:15:6:mBT_Setup	8	static
+mBT.c:35:6:mBT_Start	8	static
+mBT.c:74:6:mBT_Stop	8	static
+mBT.c:80:6:mBT_WriteChar	16	static
+mBT.c:87:6:mBT_WriteString	24	static
+mBT.c:95:6:mBT_WriteData	24	static
+mBT.c:104:6:mBT_ReadData	16	static
+mBT.c:116:6:mBT_WaitOK	16	static
